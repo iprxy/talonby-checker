@@ -2,7 +2,7 @@
 
 Сheck available slots on talon.by by doctor id (you can find id in url https://talon.by/policlinic/klinika-merci/doctors/{DOCTOR_ID})
 
-The check occurs using GitHub action. You can configure checking time in `.github/workflows/check.yml`
+The check occurs using GitHub actions. You can configure checking time in `.github/workflows/check.yml`
 
 ##Getting started:
 
