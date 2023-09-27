@@ -14,12 +14,16 @@ const root = parse(siteResponse);
 const button = root.querySelector('#doctor_header .button');
 const isButtonAvailable = !button?.classList.contains('notAvailable');
 
+console.log({ isButtonAvailable, i: IS_ALREADY_ACTIVE });
+
 if (isButtonAvailable && !Boolean(IS_ALREADY_ACTIVE)) {
+  console.log('Slot available, notify');
   await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись доступна:\n${SITE_URL}`);
   await updateEnvironment({ name: 'IS_ALREADY_ACTIVE', value: 'true' });
 }
 
 if (!isButtonAvailable && Boolean(IS_ALREADY_ACTIVE)) {
+  console.log('Slot not available, notify');
   await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись более недоступна:\n${SITE_URL}`);
   await updateEnvironment({ name: 'IS_ALREADY_ACTIVE', value: 'false' });
 }
