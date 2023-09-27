@@ -28,7 +28,7 @@ jobs:
           DOCTOR_ID: ${{secrets.DOCTOR_ID}}
           TG_USER_ID: ${{secrets.TG_USER_ID}}
           BOT_TOKEN: ${{secrets.BOT_TOKEN}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
           IS_ALREADY_ACTIVE: ${{vars.IS_ALREADY_ACTIVE}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_REPOSITORY: ${{github.event.repository.name}}
         run: bun index.ts
