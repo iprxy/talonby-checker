@@ -1,0 +1,34 @@
+name: CheckSlot
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0/5 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies for bun
+        run: bun install
+
+      - name: Run script
+        env:
+          DOCTOR_ID: ${{secrets.DOCTOR_ID}}
+          TG_USER_ID: ${{secrets.TG_USER_ID}}
+          BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
+
+        run: bun index.ts
