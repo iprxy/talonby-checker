@@ -1,6 +1,6 @@
 import { parse } from 'node-html-parser';
 import { sendMessageToTelegramBot } from './telegram';
-import { updateEnvironment } from './github';
+import { updateVariable } from './github';
 
 const { DOCTOR_ID, BOT_TOKEN, TG_USER_ID, IS_ALREADY_ACTIVE } = process.env;
 
@@ -18,11 +18,11 @@ const isAlreadyActive = IS_ALREADY_ACTIVE === 'true';
 if (isButtonAvailable && !Boolean(isAlreadyActive)) {
   console.log('Slot available, notify!');
   await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись доступна:\n${SITE_URL}`);
-  await updateEnvironment({ name: 'IS_ALREADY_ACTIVE', value: 'true' });
+  await updateVariable({ name: 'IS_ALREADY_ACTIVE', value: 'true' });
 }
 
 if (!isButtonAvailable && Boolean(isAlreadyActive)) {
   console.log('Slot not available, notify!');
   await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись более недоступна:\n${SITE_URL}`);
-  await updateEnvironment({ name: 'IS_ALREADY_ACTIVE', value: 'false' });
+  await updateVariable({ name: 'IS_ALREADY_ACTIVE', value: 'false' });
 }

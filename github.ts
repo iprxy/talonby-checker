@@ -6,10 +6,10 @@ if (!GITHUB_REPOSITORY || !GITHUB_TOKEN) throw new Error('check your environment
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = GITHUB_REPOSITORY.split('/');
 
-type UpdatedEnvironment = {
+type UpdatedVariable = {
   name: string;
   value: string;
 };
 
-export const updateEnvironment = (environment: UpdatedEnvironment) =>
-  octokit.repos.update({ owner, repo, environment: [environment] });
+export const updateVariable = (variable: UpdatedVariable) =>
+  octokit.repos.update({ owner, repo, variable: [variable] });
