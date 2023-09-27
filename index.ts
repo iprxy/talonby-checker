@@ -16,13 +16,13 @@ const isButtonAvailable = !button?.classList.contains('notAvailable');
 const isAlreadyActive = IS_ALREADY_ACTIVE === 'true';
 
 if (isButtonAvailable && !Boolean(isAlreadyActive)) {
-  console.log('Slot available, notify');
+  console.log('Slot available, notify!');
   await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись доступна:\n${SITE_URL}`);
   await updateEnvironment({ name: 'IS_ALREADY_ACTIVE', value: 'true' });
 }
 
 if (!isButtonAvailable && Boolean(isAlreadyActive)) {
-  console.log('Slot not available, notify');
+  console.log('Slot not available, notify!');
   await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись более недоступна:\n${SITE_URL}`);
   await updateEnvironment({ name: 'IS_ALREADY_ACTIVE', value: 'false' });
 }

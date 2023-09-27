@@ -29,6 +29,6 @@ jobs:
           TG_USER_ID: ${{secrets.TG_USER_ID}}
           BOT_TOKEN: ${{secrets.BOT_TOKEN}}
           IS_ALREADY_ACTIVE: ${{vars.IS_ALREADY_ACTIVE}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
           GITHUB_REPOSITORY: ${{github.repository}}
         run: bun index.ts
