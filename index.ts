@@ -14,7 +14,7 @@ const root = parse(siteResponse);
 const button = root.querySelector('#doctor_header .button');
 const isButtonAvailable = !button?.classList.contains('notAvailable');
 
-console.log({ isButtonAvailable, i: IS_ALREADY_ACTIVE });
+console.log({ isButtonAvailable, i: !Boolean(IS_ALREADY_ACTIVE) });
 
 if (isButtonAvailable && !Boolean(IS_ALREADY_ACTIVE)) {
   console.log('Slot available, notify');
