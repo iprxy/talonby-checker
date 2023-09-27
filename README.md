@@ -4,7 +4,7 @@
 
 The check occurs using GitHub actions. You can configure checking time in `.github/workflows/check.yml`
 
-##Getting started:
+## Getting started:
 
 1. Fork this repository
 2. Set up repository secrets `settings/secred-actions`:
