@@ -15,14 +15,13 @@ const button = root.querySelector('#doctor_header .button');
 const isButtonAvailable = !button?.classList.contains('notAvailable');
 const isAlreadyActive = IS_ALREADY_ACTIVE === 'true';
 
-if (isButtonAvailable && !isAlreadyActive) {
-  console.log('Slot available, notify!');
-  await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись доступна:\n${SITE_URL}`);
-  await updateVariable('true');
-}
+const updateData = async (isAvailable = true) => {
+  console.log(`Slot ${isAvailable ? 'available' : 'not available'}, notify!`);
 
-if (!isButtonAvailable && isAlreadyActive) {
-  console.log('Slot not available, notify!');
-  await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), `Запись более недоступна:\n${SITE_URL}`);
-  await updateVariable('false');
-}
+  const messageText = isAvailable ? 'Запись доступна\n' : 'Запись более недоступна:\n';
+  await sendMessageToTelegramBot(BOT_TOKEN, Number(TG_USER_ID), messageText + SITE_URL);
+  await updateVariable(isAvailable ? 'true' : 'false');
+};
+
+if (isButtonAvailable && !isAlreadyActive) updateData();
+if (!isButtonAvailable && isAlreadyActive) updateData(false);
